@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Story Kita 💘</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #ff69b4;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: left;
+    }
+
+    .event {
+      background: #fff;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .event::before {
+      content: "💖";
+      position: absolute;
+      left: -30px;
+      top: 20px;
+      font-size: 1.5rem;
+    }
+
+    .event h3 {
+      margin: 0 0 5px;
+      color: #ff4f81;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      max-width: 700px;
+      margin: 20px auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    /* Love animation */
+    .love {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-size: 2rem;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      animation: float 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+      100% { transform: translate(-50%, -150%) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Musik Latar -->
+  <audio id="bgMusic" autoplay loop style="display: none;">
+    <source src="romantis-song.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung musik.
+  </audio>
+
+  <!-- Efek Klik -->
+  <audio id="clickSound" src="klik.mp3" preload="auto"></audio>
+
+  <h1 onclick="playClick()">Cerita Kita ✨</h1>
+  <p>Setiap momen bersamamu adalah bab indah dalam kisah cinta kita 💞</p>
+
+  <div class="timeline">
+    <div class="event">
+      <h3>🌟 Awal Kenalan - September 2023</h3>
+      <p>Kita pertama kali ngobrol cerita tentang pas kita masih tes 😀, dan dari situ semuanya berubah 😳</p>
+    </div>
+    <div class="event">
+      <h3>Awal kita deket - Oktober 2023</h3>
+      <p>Awalnya aku sedikit kecewa karena kamu gamau ehh lama kelamaan kamu mau 😁</p>
+    </div>
+    <div class="event">
+      <h3>💌 Jadian - 20 Oktober 2023</h3>
+      <p>Akhirnya kamu mau pilih aku jadi pendamping hidup kamu ❤️</p>
+    </div>
+    <div class="event">
+      <h3>💍 Masa depan</h3>
+      <p>Semoga kita bisa menikah & bangun keluarga yang sakinah, mawadah, warohmah 🥰</p>
+    </div>
+  </div>
+
+  <h2>📸 Kenangan Kita</h2>
+  <div class="gallery">
+    <img src="bersama1.jpg" alt="Foto bareng 1">
+    <img src="bersama2.jpg" alt="Foto bareng 2">
+    <img src="bersama3.jpg" alt="Foto bareng 3">
+    <img src="bersama4.jpg" alt="Foto bareng 4">
+  </div>
+
+  <footer>
+    Alhamdulillah, jazakillah khoiro ya udah jadi bagian dari hidup aku 🌈🐰<br/>
+    Aku sayang kamu banget! 💗 I Love You honey ❤️
+  </footer>
+
+  <!-- Script Musik, Klik, dan Love -->
+  <script>
+    const bgMusic = document.getElementById("bgMusic");
+    const clickSound = document.getElementById("clickSound");
+
+    // Autoplay fix: jika gagal, tunggu klik user
+    window.addEventListener("load", () => {
+      bgMusic.play().catch(() => {
+        document.addEventListener("click", () => bgMusic.play(), { once: true });
+      });
+    });
+
+    function playClick() {
+      clickSound.play();
+      showLove();
+    }
+
+    // Animasi love waktu diklik
+    function showLove() {
+      const heart = document.createElement("div");
+      heart.classList.add("love");
+      heart.textContent = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    // Pas klik di mana saja, bunyi & animasi
+    document.body.addEventListener("click", playClick);
+  </script>
+
+</body>
+</html>
